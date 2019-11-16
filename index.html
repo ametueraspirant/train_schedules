@@ -2,7 +2,7 @@
 <html lang = "en-us">
 <head>
 	<meta charset = "UTF-8">
-	<title>This srain station's about to get back on the rails</title>
+	<title>This train station's about to get back on the rails</title>
 
 	<link rel = "stylesheet" href = "assets/css/reset.css" type = "text/css">
 
@@ -17,9 +17,69 @@
 </head>
 <body>
 <header id = "body-header">
-		
+		<h1 class = "gnarle">Superpropositioned Mathemagical Train Route Generationer</h1>
 </header>
+<div class = "body-body">
+	<h2>Current Train Schedules</h2>
+	<table id = "train-schedules">
+		<thead>
+			<tr>
+				<th><b>Train Name</b></th>
+				<th><b>Destination</b></th>
+				<th><b>Frequency (min)</b></th>
+				<th><b>Next Arrival</b></th>
+				<th><b>Minutes Away</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>train</td>
+				<td>place</td>
+				<td>interval</td>
+				<td>increment</td>
+				<td>amount</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
+<div class = "body-body">
+	<h3>Register a Train</h3>
+	<form>
+		Train Name<br>
+		<input type = "text" id = "train-name" placeholder = "ex. Thomas"><br>
+		Destination<br>
+		<input type = "text" id = "train-destination" placeholder = "ex. Platform 9 3/4"><br>
+		First Train Time<br>
+		<input type = "text" id = "first-train" placeholder = "HH:mm - military time"><br>
+		Frequency<br>
+		<input type = "text" id = "frequency" placeholder = "# of minutes"><br>
+		<input type = "submit" id = "register-train" value = "Register">
+		
+	</form>
+</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+	https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+
+<script>
+	// Your web app's Firebase configuration
+	var firebaseConfig = {
+		apiKey: "AIzaSyApEq1-vx7p0thKjoZBhZBIcJnSwrEq-tQ",
+		authDomain: "train-scheduler-82522.firebaseapp.com",
+		databaseURL: "https://train-scheduler-82522.firebaseio.com",
+		projectId: "train-scheduler-82522",
+		storageBucket: "train-scheduler-82522.appspot.com",
+		messagingSenderId: "468614360216",
+		appId: "1:468614360216:web:afe4c733c83057dc59b4ed"
+	};
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+</script>
 
 <script src = "assets/code/trains.js"></script>
 </body>

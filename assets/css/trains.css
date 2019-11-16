@@ -1,6 +1,97 @@
-body
+.gnarle
 {
 	font-family: 'GnraleStationExtended';
 	font-weight: normal;
 	font-style: normal; 
+}
+
+body
+{
+	background-image: url("../images/batthern_@2X.png");
+}
+
+h1
+{
+	font-size: 23px;
+	line-height: 80px;
+	color: #EBEBEB;
+}
+
+h2, h3
+{
+	font-size: 23px;
+	line-height: 30px;
+	padding-bottom: 5px;
+	background-color: #4f7199;
+	border-radius: 10px 10px 0 0;
+	color: #EBEBEB;
+}
+
+table
+{
+	border-collapse: collapse;
+	margin: 10px auto;
+}
+
+tr, th
+{
+	border-bottom: 1px solid grey;
+	width: 180px;
+	height: 30px;
+	text-align: left;
+}
+
+td
+{
+	text-align: left;
+}
+
+form
+{
+	text-align: left;
+	padding: 0 30px 15px;
+}
+
+input
+{
+	border-radius: 10px;
+	width: 100%;
+	margin: 5px 0;
+}
+
+input[type = submit]
+{
+	width: 200px;
+	margin: 15px 0 5px;
+}
+
+#body-header
+{
+	width: 1080px;
+	margin: 0 auto;
+	height: 100%;
+	text-align: center;
+	background-color: #4f7199;
+	border-bottom: 5px solid #5f3230;
+	border-radius: 0 0 10px 10px;
+}
+
+.body-body
+{
+	width: 960px;
+	margin: 25px auto;
+	height: 100%;
+	text-align: center;
+	border: 3px solid #4f7199;
+	border-radius: 15px;
+	background-color: #EBEBEB;
+}
+
+
+@media screen and (max-width: 1024px)
+{
+	#body-header, .body-body
+	{
+		width: 100%;
+	}
 }
