@@ -13,32 +13,54 @@ $("#register-train").on("click", function(event)
 	train_time_first = $("#first-train").val().trim();
 	train_time_interval = $("#frequency").val().trim();
 
-	$("#train-name").val('');
-	$("#train-destination").val('');
-	$("#first-train").val('');
-	$("#frequency").val('');
-	
-	database.ref().push({
-		name: train_name,
-		destination: train_destination,
-		first_time: train_time_first,
-		interval: train_time_interval,
-		add_date: firebase.database.ServerValue.TIMESTAMP
-	});
+	if ($("#train-name").val() !== '' && $("#train-destination").val() !== '' && $("#first-train").val() !== '' && $("#frequency").val() !== '')
+	{
+		$("#train-name").val('');
+		$("#train-destination").val('');
+		$("#first-train").val('');
+		$("#frequency").val('');
+
+		database.ref().push({
+			name: train_name,
+			destination: train_destination,
+			first_time: train_time_first,
+			interval: train_time_interval,
+			add_date: firebase.database.ServerValue.TIMESTAMP
+		});
+	}
+	else
+	{
+		alert("Hey you gotta fill out all the boxes.");
+	}
 });
 
-database.ref().on("child_added", function(snapshot)
+database.ref().on("child_added", render_trains);
+
+function render_trains(snapshot)
 {
-	console.log(snapshot);
+	var get_time = snapshot.val().first_time;
+	var get_int = snapshot.val().interval;
 
-	
-
+	var minutes_away = get_int - (moment().diff(moment(get_time, "HH:mm"), "minutes")%get_int);
+	var next_arrival = moment().add(minutes_away, "minutes").format("hh:mm");
 
 	var new_tr = $("<tr>").append(
-		$("<td>").text(),
-		$("<td>").text(),
-		$("<td>").text(),
-		$("<td>").text()
+		$("<td>").text(snapshot.val().name),
+		$("<td>").text(snapshot.val().destination),
+		$("<td>").text(snapshot.val().interval),
+		$("<td>").text(next_arrival),
+		$("<td>").text(minutes_away + " minutes")
 	);
 	$("#train-schedules > tbody").append(new_tr);
-});
+}
+
+function update_clock()
+{
+	console.log(moment().second());
+	if(moment().second() === 0)
+	{
+		$("#train-schedules > tbody").empty();
+		database.ref().on("child_added", render_trains);
+	}
+}
+setInterval(update_clock, 1000);
