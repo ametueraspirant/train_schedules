@@ -4,23 +4,25 @@
 	<meta charset = "UTF-8">
 	<title>This train station's about to get back on the rails</title>
 
+	<!-- all important css stylesheets import -->
 	<link rel = "stylesheet" href = "assets/css/reset.css" type = "text/css">
-
 	<link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin = "anonymous">
-
 	<link rel = "stylesheet" media = "screen" href = "https://fontlibrary.org/face/generale-station" type = "text/css">
 
+	<!-- jquery and momentjs -->
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
+	
+	<!-- and my stylesheet last -->
 	<link rel = "stylesheet" href = "assets/css/trains.css" type = "text/css">
 </head>
 <body>
 <header id = "body-header">
+		<!-- the class sets the font and that's it -->
 		<h1 class = "gnarle">Superpropositioned Mathemagical Train Route Generationer</h1>
 </header>
+<!-- here's where all the cool table stuff goes -->
 <div class = "body-body">
 	<h2>Current Train Schedules</h2>
 	<table id = "train-schedules">
@@ -30,14 +32,14 @@
 				<th><b>Destination</b></th>
 				<th><b>Frequency (minutes)</b></th>
 				<th><b>Next Arrival</b></th>
-				<th><b>Minutes Away</b></th>
+				<th><b>Time to Arrival</b></th>
 			</tr>
 		</thead>
 		<tbody>
 		</tbody>
 	</table>
 </div>
-
+<!-- here's the input boxes that get activated and sent into the js file -->
 <div class = "body-body">
 	<h3>Register a Train</h3>
 	<form>
@@ -76,6 +78,7 @@
 	firebase.initializeApp(firebaseConfig);
 </script>
 
+<!-- here's the js file. it's where the magic happens -->
 <script src = "assets/code/trains.js"></script>
 </body>
 </html>
