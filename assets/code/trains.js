@@ -53,7 +53,8 @@ function render_trains(snapshot)
 	// check if the first train time is in the past or in the future. doesn't account for dates.
 	if (moment(get_time, "HH:mm").diff(moment(), "minutes") >= 0)
 	{
-		var minutes_away = moment(get_time, "HH:mm").diff(moment(), "minutes");
+		// var minutes_away = moment(get_time, "HH:mm").diff(moment(), "minutes");
+		var minutes_away = moment(get_time, "HH:mm").diff(moment().subtract(1, "m"), "minutes");
 	}
 	else
 	{
@@ -112,20 +113,20 @@ function render_trains(snapshot)
 }
 
 // this replaces that other function and activates on page load or database update. the main logic is relegated tooooooooooo
+// this for some reason needs to be either a .on and .off pair or a .once or the code will double post.
+// the code inside the .on never seems to run except on page load because that's the only time it will print "this is true now".
+// however if the .on or the .off is missing it will double post. TOTALLY IGNORING THE FACT THAT.
 database.ref().on("value", function () {
+	console.log("this is true now");
 	please_reload = true;
 });
+database.ref().off();
 
-// this hack job
-// the original function was what is now on line 132 but I made sure to clear the train body so it can create from a blank slate
-// it also for some reason still creates multiple entries visually on the train table a split second before all that is wiped away and replaced properly
-// I don't know why this happens and it's mostly a visual bug now so I don't care too much about "fixing" it though I would love to know why it happens because I can't figure it out at all
-// also I wasn't aware on "child_added" just ran if called like this because when the minute hits zero it shouldn't be updating the remote database at all but it runs anyway.
-// I had to keep changing the line that the line 120 comment refers to because I kept pushing it down with comments and I'M DOING IT AGAIN BY EXPLAINING THIS
-// I even had to update which line the line 124 comment refers to because line 119 and 120 used to be on the same line!
-// I'M DOING IT AGAIN!
+// this hack job here shouldn't be running at all during any run unless it's the top of a minute or please_reload is set to true.
+// WHICH IT NEVER IS BUT THE CODE FREAKING RUNS ANYWAY.
 function update_clock()
 {
+	console.log(please_reload, moment().second());
 	if(moment().second() === 0 || please_reload === true)
 	{
 		$("#train-schedules > tbody").empty();
