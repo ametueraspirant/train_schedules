@@ -3,6 +3,7 @@ var train_name = "";
 var train_destination = "";
 var train_time_first = 0;
 var train_time_interval = 0;
+var please_reload = true;
 
 $("#register-train").on("click", function(event)
 {
@@ -34,13 +35,13 @@ $("#register-train").on("click", function(event)
 	}
 });
 
-database.ref().on("child_added", render_trains);
-
 function render_trains(snapshot)
 {
+
 	var get_time = snapshot.val().first_time;
 	var get_int = snapshot.val().interval;
 
+	//check if the first train time is in the future.
 	var minutes_away = get_int - (moment().diff(moment(get_time, "HH:mm"), "minutes")%get_int);
 	var next_arrival = moment().add(minutes_away, "minutes").format("hh:mm");
 
@@ -54,13 +55,18 @@ function render_trains(snapshot)
 	$("#train-schedules > tbody").append(new_tr);
 }
 
+database.ref().on("value", function () {
+	please_reload = true;
+});
+
 function update_clock()
 {
 	console.log(moment().second());
-	if(moment().second() === 0)
+	if(moment().second() === 0 || please_reload === true)
 	{
 		$("#train-schedules > tbody").empty();
 		database.ref().on("child_added", render_trains);
+		please_reload = false;
 	}
 }
 setInterval(update_clock, 1000);
