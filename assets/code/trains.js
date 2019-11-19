@@ -117,9 +117,10 @@ database.ref().on("value", function () {
 });
 
 // this hack job
-// the original function was what is now on line 131 but I made sure to clear the train body so it can create from a blank slate
+// the original function was what is now on line 132 but I made sure to clear the train body so it can create from a blank slate
 // it also for some reason still creates multiple entries visually on the train table a split second before all that is wiped away and replaced properly
 // I don't know why this happens and it's mostly a visual bug now so I don't care too much about "fixing" it though I would love to know why it happens because I can't figure it out at all
+// also I wasn't aware on "child_added" just ran if called like this because when the minute hits zero it shouldn't be updating the remote database at all but it runs anyway.
 // I had to keep changing the line that the line 120 comment refers to because I kept pushing it down with comments and I'M DOING IT AGAIN BY EXPLAINING THIS
 // I even had to update which line the line 124 comment refers to because line 119 and 120 used to be on the same line!
 // I'M DOING IT AGAIN!
