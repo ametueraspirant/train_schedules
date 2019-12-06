@@ -3,6 +3,8 @@ The schedules of the trains
 
 ![image1](assets/images/readme1.png)
 
+## to play the game visit this link https://ametueraspirant.github.io/train_schedules/
+
 You are a conductor! Manage and name your trains well!. I say you are because I never got around to adding the distinction between those who can add trains and those who can't.
 
 Most of the code was pretty old hat but this little bundle of frustration was very new, and pretty much does everything and I haven't a clue why.
